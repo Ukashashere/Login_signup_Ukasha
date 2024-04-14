@@ -4,6 +4,6 @@
 
 It has a login and signup page with a database of all the Correct User logins and passwords. \n
 Enjoy it.😊 \n
-Chao!!👷‍♂️🫡
+Chao!!👷‍♂️🫡 \n
 
 ![IceagePossumGIF](https://github.com/Ukashashere/Login_signup_Ukasha/assets/116743795/1dc10ab2-6ea2-4d88-acc0-6d60cb2ce4df)
