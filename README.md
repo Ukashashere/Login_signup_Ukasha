@@ -1,8 +1,8 @@
 # The Readme and the SS given below will give a better understanding of the project and help to run the source Code given here.
 ## This is an Express js simple project
-### This project makes a **WEB SERVER** with a LOGIN page, with the options of **login** and **signup**. The databasee of all teh logins and signups- Emails and Passwords will be stored in the server.
+### This project makes a **WEB SERVER** with a LOGIN page, with the options of **login** and **signup**. The database of all the Emails and Passwords used for logins and signups- will be stored in the server.
 
-It has a login and signup page with a database of all the Correct User logins and passwords.                                                                                        
+It has a login and signup page with a database of all the Correct logins- User Emails with their passwords.                                                                                        
 Enjoy it.😊                                                                                                                                                                       
 Chao!!👷‍♂️🫡 
 ### .
