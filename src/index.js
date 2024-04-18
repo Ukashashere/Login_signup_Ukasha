@@ -8,7 +8,7 @@ const app = express()                  //start express.js
 
 
 
-app.listen(3000, () => {               //defining a port number
+app.listen(3000, () => {               //defining a port number, it is a function also
     console.log('port connected');
 })
 
