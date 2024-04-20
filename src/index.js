@@ -2,7 +2,7 @@ const express = require("express")         //requires express.js
 const path = require("path")
 const app = express()                      //start express.js
 // const hbs = require("hbs")
-const LogInCollection = require("./mongo")
+const LogInCollection = require("./mongodb")
 const port = process.env.PORT || 3000
 app.use(express.json())
 
