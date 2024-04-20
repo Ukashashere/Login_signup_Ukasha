@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 // app.get('/home', (req, res) => {
 //     res.render('home')
 // })
-app.post('/signup', async (req, res) => {
+app.post('/signup', async (req, res) => {       //In order to work with mongoDB we have to write 'async' function
     
     // const data = new LogInCollection({
     //     name: req.body.name,
@@ -37,10 +37,10 @@ app.post('/signup', async (req, res) => {
 
     const data = {
         name: req.body.name,
-        password: req.body.password
+        password: req.body.password             //defined the  data
     }
-
-    const checking = await LogInCollection.findOne({ name: req.body.name })
+                                                
+    const checking = await LogInCollection.findOne({ name: req.body.name })   //To give this data to mongodb.To fill the collected data from 'signup' page to mongodb, we used 'await'. We use 'async' and 'await' functions to work with mongodb
 
    try{
     if (checking.name === req.body.name && checking.password===req.body.password) {
@@ -80,7 +80,7 @@ app.post('/login', async (req, res) => {
     }
 })
 
-app.listen(port, () => {                           //defining a port number, it is a function also
+app.listen(port, () => {                  //defining a port number, here alteady defined above in the code, it is a function also
     console.log('port connected');
 })
 
