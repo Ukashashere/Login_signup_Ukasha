@@ -21,7 +21,7 @@ const logInSchema=new mongoose.Schema({        //To create a database / a docume
 
 const collection=new mongoose.model('LogInCollection',logInSchema)  //Collection part, we are defining the collection here. 'LogInCollection' is name of collection. 'logInSchema' is written coz, it'll follow it's schema.
 
-module.exports=collection
+module.exports=collection      //To get this on 'index.js'
 
 
 
