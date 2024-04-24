@@ -27,58 +27,43 @@ app.get('/', (req, res) => {
 // app.get('/home', (req, res) => {
 //     res.render('home')
 // })
-app.post('/signup', async (req, res) => {       //In order to work with mongoDB we have to write 'async' function
-    
-    // const data = new LogInCollection({
-    //     name: req.body.name,
-    //     password: req.body.password
-    // })
-    // await data.save()
+app.post('/signup', async (req, res) => {
+    try {
+        const data = {
+            name: req.body.name,
+            password: req.body.password
+        }
+        const checking = await LogInCollection.findOne({ name: req.body.name })
 
-    const data = {
-        name: req.body.name,
-        password: req.body.password             //defined the  data
+        if (checking) {
+            res.send("User details already exist")
+        } else {
+            await LogInCollection.create(data)
+            res.status(201).render("home", { naming: req.body.name })
+        }
+    } catch (error) {
+        res.status(500).send("Internal Server Error")
     }
-                                                
-    const checking = await LogInCollection.findOne({ name: req.body.name })   //To give this data to mongodb.To fill the collected data from 'signup' page to mongodb, we used 'await'. We use 'async' and 'await' functions to work with mongodb
-
-   try{
-    if (checking.name === req.body.name && checking.password===req.body.password) {
-        res.send("user details already exists")
-    }
-    else{
-        await LogInCollection.insertMany([data])
-    }
-   }
-   catch{
-    res.send("wrong inputs")
-   }
-
-    res.status(201).render("home", {
-        naming: req.body.name
-    })
 })
 
 app.post('/login', async (req, res) => {
-
     try {
-        const check = await LogInCollection.findOne({ name: req.body.name })
+        const user = await LogInCollection.findOne({ name: req.body.name })
 
-        if (check.password === req.body.password) {
-            res.status(201).render("home", { naming: `${req.body.password}+${req.body.name}` })
+        if (!user) {
+            res.send("User not found")
+        } else {
+            if (user.password === req.body.password) {
+                res.status(201).render("home", { naming: req.body.name })
+            } else {
+                res.send("Incorrect password")
+            }
         }
-
-        else {
-            res.send("incorrect password")
-        }
-    } 
-    
-    catch (e) {
-
-        res.send("wrong details")
-        
+    } catch (error) {
+        res.status(500).send("Internal Server Error")
     }
 })
+
 
 app.listen(port, () => {                  //defining a port number, here alteady defined above in the code, it is a function also
     console.log('port connected');
@@ -236,4 +221,63 @@ const app = express()                  //start express.js
 app.listen(3000, () => {               //defining a port number, it is a function also
     console.log('port connected');
 })
+*/
+
+
+
+
+/*
+app.post('/signup', async (req, res) => {       //In order to work with mongoDB we have to write 'async' function
+    
+    // const data = new LogInCollection({
+    //     name: req.body.name,
+    //     password: req.body.password
+    // })
+    // await data.save()
+
+    const data = {
+        name: req.body.name,
+        password: req.body.password             //defined the  data
+    }
+                                                
+    const checking = await LogInCollection.findOne({ name: req.body.name })   //To give this data to mongodb.To fill the collected data from 'signup' page to mongodb, we used 'await'. We use 'async' and 'await' functions to work with mongodb
+
+   try{
+    if (checking.name === req.body.name && checking.password===req.body.password) {
+        res.send("user details already exists")
+    }
+    else{
+        await LogInCollection.insertMany([data])
+    }
+   }
+   catch{
+    res.send("wrong inputs")
+   }
+
+    res.status(201).render("home", {
+        naming: req.body.name
+    })
+})
+
+app.post('/login', async (req, res) => {
+
+    try {
+        const check = await LogInCollection.findOne({ name: req.body.name })
+
+        if (check.password === req.body.password) {
+            res.status(201).render("home", { naming: `${req.body.password}+${req.body.name}` })
+        }
+
+        else {
+            res.send("incorrect password")
+        }
+    } 
+    
+    catch (e) {
+
+        res.send("wrong details")
+        
+    }
+})
+
 */
